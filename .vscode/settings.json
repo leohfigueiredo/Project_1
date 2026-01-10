@@ -1,0 +1,248 @@
+{
+    // =========================
+    // PYTHON / JUPYTER (ML - AJUSTADO)
+    // =========================
+    // 🎯 CAMINHO CORRETO DO SEU AMBIENTE (ml_win, não ml_env)
+    "python.defaultInterpreterPath": "${workspaceFolder}\\ml_win\\Scripts\\python.exe",
+    "python.terminal.activateEnvironment": true,
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "python.languageServer": "Pylance",
+    // ✅ COMPLETIONS E ANÁLISE (OTIMIZADO PARA ML)
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.completeFunctionParens": true,
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/src",
+        "${workspaceFolder}/notebooks"
+    ],
+    "python.analysis.diagnosticMode": "workspace",
+    "python.analysis.indexing": false, // Reduz travamentos
+    "python.analysis.memory.keepLibraryAst": false,
+    "python.analysis.typeCheckingMode": "off", // Desliga para TensorFlow/PyTorch
+    // 📊 JUPYTER — CONFIGURAÇÕES OTIMIZADAS
+    "jupyter.notebookFileRoot": "${workspaceFolder}",
+    "jupyter.restoreNotebookState": false,
+    "jupyter.askForKernelRestart": false,
+    "jupyter.disableJupyterAutoStart": false, // Alterado para false
+    "jupyter.executionTimeout": 30, // 30 segundos (não 0)
+    "jupyter.enableExtendedPythonKernelCompletions": false,
+    "jupyter.jupyterServerType": "local",
+    "jupyter.interactiveWindow.creationMode": "perFile",
+    // 🚫 EVITA CONFLITO COM PYTHON GLOBAL
+    "jupyter.kernels.excludePythonEnvironments": [
+        "python3",
+        "Python 3.*",
+        "/usr/bin/python3",
+        "conda",
+        "base",
+        "Conda"
+    ],
+    // 🔧 FORMATADOR PARA ML (BLACK)
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": false,
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "--line-length=88",
+        "--target-version=py310"
+    ],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        },
+        "editor.wordBasedSuggestions": "matchingDocuments"
+    },
+    // 🧪 LINTING (ANÁLISE DE CÓDIGO)
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.flake8Enabled": false,
+    "python.linting.mypyEnabled": false,
+    "python.linting.pylintArgs": [
+        "--disable=C0111,C0114,C0115,C0116", // Desativa warnings de docstring
+        "--max-line-length=88",
+        "--extension-pkg-whitelist=tensorflow,torch,numpy"
+    ],
+    // 🎯 EDITOR SUGGESTIONS (OTIMIZADO PARA ML)
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": true,
+        "strings": true
+    },
+    "editor.parameterHints.enabled": true,
+    "editor.parameterHints.cycle": true,
+    "editor.inlayHints.enabled": "on",
+    "editor.suggest.showMethods": true,
+    "editor.suggest.showFunctions": true,
+    "editor.suggest.showClasses": true,
+    "editor.suggest.showModules": true,
+    // 📁 NOTEBOOK CONFIG
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "notebook.lineNumbers": "on",
+    "notebook.output.textLineLimit": 100,
+    // 🐍 TERMINAL CONFIG
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "terminal.integrated.env.windows": {
+        "PYTHONPATH": "${workspaceFolder}/src;${env:PYTHONPATH}",
+        "TF_CPP_MIN_LOG_LEVEL": "2", // Reduz logs do TensorFlow
+        "PYTHONUNBUFFERED": "1"
+    },
+    "terminal.integrated.cwd": "${workspaceFolder}",
+    // 🧪 TESTING
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false,
+    "python.testing.cwd": "${workspaceFolder}",
+    "python.testing.pytestArgs": [
+        "src",
+        "-v",
+        "--tb=short"
+    ],
+    // =========================
+    // GIT (MANTIDO)
+    // =========================
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "git.ignoreRebaseWarning": true,
+    "gitHistory.includeRemoteBranches": true,
+    // =========================
+    // AUTODOC / AI (MANTIDO)
+    // =========================
+    "doxdocgen.generic.useGitUserEmail": true,
+    "doxdocgen.generic.useGitUserName": true,
+    "tabnine.experimentalAutoImports": false,
+    "continue.enableTabAutocomplete": true,
+    // =========================
+    // DATABASE / SQL (MANTIDO)
+    // =========================
+    "pgsql.connections": [
+        {
+            "id": "9C845FF4-9574-48CD-9B85-D2C652B99C33",
+            "groupId": "184526A5-A6C7-4C7E-A0D0-F295D270C26B",
+            "authenticationType": "SqlLogin",
+            "connectTimeout": 15,
+            "applicationName": "vscode-pgsql",
+            "user": "postgres",
+            "database": "postgres",
+            "imageName": "postgres",
+            "imageVersion": "latest",
+            "profileName": "local-postgres_leo",
+            "containerName": "local-postgres_leo",
+            "password": "",
+            "savePassword": true,
+            "port": "54876",
+            "server": "localhost",
+            "expiresOn": 0
+        }
+    ],
+    "pgsql.serverGroups": [
+        {
+            "name": "Servers",
+            "id": "184526A5-A6C7-4C7E-A0D0-F295D270C26B",
+            "isDefault": true
+        }
+    ],
+    "sqltools.useNodeRuntime": false,
+    "sqltools.autoConnectTo": "",
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "SQL_Course",
+            "group": "tableau_projects",
+            "database": "northwind",
+            "username": "postgres"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "PG Local",
+            "database": "demo_employee",
+            "username": "postgres"
+        }
+    ],
+    "[sql]": {
+        "editor.defaultFormatter": "mtxr.sqltools"
+    },
+    // =========================
+    // UI / WORKBENCH (MANTIDO)
+    // =========================
+    "workbench.colorTheme": "Tomorrow Night Blue",
+    "workbench.iconTheme": "easy-icons",
+    "editor.largeFileOptimizations": false,
+    "diffEditor.codeLens": true,
+    "security.workspace.trust.untrustedFiles": "open",
+    // =========================
+    // CMAKE / DOTNET (MANTIDO)
+    // =========================
+    "cmake.generator": "Ninja",
+    "cmake.sourceDirectory": "${workspaceFolder}",
+    "cmake.buildDirectory": "${workspaceFolder}/build",
+    "cmake.configureOnOpen": true,
+    "dotnetAcquisitionExtension.sharedExistingDotnetPath": "C:\\Program Files\\dotnet\\dotnet.exe",
+    // =========================
+    // THEMING (MANTIDO)
+    // =========================
+    "editor.tokenColorCustomizations": {
+        "comments": "#0beb16",
+        "strings": "#eaff29",
+        "keywords": "#d335c6",
+        "numbers": "#1493fa",
+        "operators": "#D4D4D4",
+        "punctuation": "#D4D4D4",
+        "variables": "#f8f8f8",
+        "constants": "#4FC1FF",
+        "functions": "#DCDCAA",
+        "methods": "#DCDCAA",
+        "classes": "#4EC9B0",
+        "types": "#f8fcfb",
+        "tags": "#4EC9B0",
+        "settings": "#4EC9B0",
+        "entity": "#4EC9B0"
+    },
+    // =========================
+    // OUTROS (AJUSTADO)
+    // =========================
+    "database-client.autoSync": true,
+    "raspberry-pi-pico.python3Path": "${workspaceFolder}\\ml_win\\Scripts\\python.exe",
+    "chat.mcp.gallery.enabled": true,
+    "claudeCode.preferredLocation": "panel",
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+    // 🗂️ FILE EXCLUSIONS (NOVO - IMPORTANTE)
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.pytest_cache": true,
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/*.pyc": true,
+        "**/.ipynb_checkpoints": true
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/*.egg-info": true,
+        "**/venv": true,
+        "**/env": true
+    },
+    // 📝 AUTO SAVE
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+    // 🧠 MEMORY/PERFORMANCE
+    "python.analysis.memory.keepLibraryLocalVariables": false,
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingImports": "none"
+    },
+    // 📦 PACKAGE SPECIFIC
+    "notebook.kernelProviderAssociations": [
+        {
+            "viewType": "jupyter-notebook",
+            "kernelProvider": "ms-toolsai.jupyter"
+        }
+    ]
+}

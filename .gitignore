@@ -21,6 +21,7 @@ __pycache__/
 pizza_steak/train/
 pizza_steak/test/
 untitled_project/trial_*/
+10_food_classes_all_data/
 
 # Outros
 24.3.25/
@@ -30,3 +31,5 @@ venv/
 .ml_env/
 ml_env/
 .env/
+.ml_win/
+ml_win/
