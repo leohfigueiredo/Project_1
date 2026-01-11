@@ -3,7 +3,7 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
-.ipynb_checkpoints/
+#.ipynb_checkpoints/
 
 # Dados e modelos grandes
 *.h5
