@@ -1,0 +1,12 @@
+{
+    "CodeGPT.apiKey": "Ollama",
+    "twinny.completionCacheEnabled": true,
+    "ollama-autocoder.completion keys": "[\" \", \".\", \":\", \"(\", \"[\", \"{\", \"=\"]",
+    "ollama-autocoder.model": "qwen2.5-coder:7b",
+    "ollama-autocoder.preview delay": 0,
+    "ollama-autocoder.preview max tokens": 60,
+    "ollama-autocoder.prompt window size": 4096,
+    "ollama-autocoder.temperature": 0.05,
+    "ollama-autocoder.max tokens predicted": 200,
+    "ollama-autocoder.message header": " You are completing Python code inside a Jupyter notebook cell. Only generate the next small portion of code, respecting the current context. Avoid generating full files or long functions unless explicitly continued.\n\n```\n"
+}

@@ -1,0 +1,36 @@
+{
+    "models": [
+        {
+            "title": "Qwen 2.5 Coder 7B (Ollama)",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "completionOptions": {
+                "temperature": 0.1,
+                "maxTokens": 120,
+                "stop": [
+                    "\n\n",
+                    "# %%",
+                    "```",
+                    "</cell>"
+                ]
+            }
+        }
+    ],
+    "autocomplete": {
+        "numTokens": 80,
+        "debounceDelayMs": 50,
+        "maxPromptTokens": 4096,
+        "useFileContext": true,
+        "useNotebookContext": true
+    },
+    "context": {
+        "includeCode": true,
+        "includeComments": false,
+        "includeImports": true,
+        "maxFileTokens": 4096
+    },
+    "ui": {
+        "inlineCompletionEnabled": true,
+        "sidebarEnabled": true
+    }
+}
