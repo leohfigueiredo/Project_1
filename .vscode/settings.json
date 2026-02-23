@@ -8,5 +8,8 @@
     "ollama-autocoder.prompt window size": 4096,
     "ollama-autocoder.temperature": 0.05,
     "ollama-autocoder.max tokens predicted": 200,
-    "ollama-autocoder.message header": " You are completing Python code inside a Jupyter notebook cell. Only generate the next small portion of code, respecting the current context. Avoid generating full files or long functions unless explicitly continued.\n\n```\n"
+    "ollama-autocoder.message header": " You are completing Python code inside a Jupyter notebook cell. Only generate the next small portion of code, respecting the current context. Avoid generating full files or long functions unless explicitly continued.\n\n```\n",
+    "workbench.settings.showAISearchToggle": false,
+    "gitlens.ai.enabled": false,
+    "chat.disableAIFeatures": true
 }

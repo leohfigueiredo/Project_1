@@ -1,36 +1,108 @@
-# Ambientes Python e cache
+########################################
+# Python
+########################################
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-#.ipynb_checkpoints/
+*.pdb
+*.pkl
+*.pickle
 
-# Dados e modelos grandes
-*.h5
+# Notebooks
+.ipynb_checkpoints/
+
+########################################
+# Ambientes virtuais
+########################################
+env/
+venv/
+.env/
+.ml_env/
+ml_env/
+.ml_win/
+ml_win/
+
+########################################
+# Dados e Datasets (imagens, CSVs, ZIPs)
+########################################
+# Arquivos grandes comuns
 *.zip
-*.png
+*.tar
+*.tar.gz
+*.gz
+*.csv
+*.tsv
+
+# Imagens
 *.jpg
 *.jpeg
-*.csv
+*.png
+*.bmp
+*.gif
+*.tiff
+*.webp
+
+# Numpy
 *.npy
 *.npz
-*.pt
-*.pth
 
-# Pastas de treino/teste
+# Pastas de datasets
+data/
+datasets/
+*/data/
+*/datasets/
+
+# Pastas específicas do teu projeto
 pizza_steak/train/
 pizza_steak/test/
 untitled_project/trial_*/
 
+# MACOSX lixo
+*_MACOSX/
+*/_MACOSX/
+
+########################################
+# Modelos e checkpoints
+########################################
+# TensorFlow
+*.h5
+*.hdf5
+*.pb
+*.ckpt*
+checkpoint/
+
+# PyTorch
+*.pt
+*.pth
+
+# Pastas de modelos
+models/
+checkpoints/
+saved_models/
+
+########################################
+# Logs e outputs de treino
+########################################
+logs/
+*.log
+events.out.tfevents.*
+
+########################################
 # Outros
+########################################
 24.3.25/
-ml_env/
-env/
-venv/
-.ml_env/
-ml_env/
-.env/
-ml_win/
-.ml_win/
-.ml_ai/
-ml_ai/
+
+# TensorBoard logs
+events.out.tfevents.*
+logs/
+*/logs/
+*/*/logs/
+*/*/*/logs/
+*/*/*/*/logs/
+*/*/*/*/*/logs/
+*/*/*/*/*/*/logs/
+*/*/*/*/*/*/*/logs/
+*/*/*/*/*/*/*/*/logs/
+*/*/*/*/*/*/*/*/*/logs/
+*/*/*/logs/
