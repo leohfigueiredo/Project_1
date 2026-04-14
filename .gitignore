@@ -35,3 +35,36 @@ ml_env/
 ml_win/
 .ml_ai/
 ml_ai/
+
+# Modelos salvos
+model_6_h5/
+model_logs/
+model_6_SavedModel_format/
+
+# Datasets de Imagens
+10_food_classes_1_percent/
+10_food_classes_10_percent/
+101_food_classes_10_percent/
+custom_food_images/
+
+# Modelos Salvos e Checkpoints
+06_101_food_class_10_percent_saved_big_dog_model/
+10_food_classes_model_10/
+model_checkpoints/
+SAVE_DIR/
+ten_percent_checkpoint_weights/
+
+# Logs e Histórico de Treino
+runs/
+training_logs/
+transfer_learning/
+
+# Cache e Arquivos Soltos do Sistema/Modelos
+.venv/
+__MACOSX/
+tensorflow_hub/
+101_food_classes_10_percent_data_model_checkpoint.*
+vectors.tsv
+metadata.tsv
+checkpoint
+
