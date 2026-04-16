@@ -54,7 +54,7 @@ model_checkpoints/
 SAVE_DIR/
 ten_percent_checkpoint_weights/
 
-# Logs e Histórico de Treino
+# Logs e Histï¿½rico de Treino
 runs/
 training_logs/
 transfer_learning/
@@ -67,4 +67,10 @@ tensorflow_hub/
 vectors.tsv
 metadata.tsv
 checkpoint
+
+# Arquivos de variÃ¡veis do TensorFlow
+*.data-00000-of-*
+*.data-*
+*.index
+
 
