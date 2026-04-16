@@ -16,6 +16,7 @@ __pycache__/
 *.npz
 *.pt
 *.pth
+*.tsv
 
 # Pastas de treino/teste
 pizza_steak/train/
@@ -29,7 +30,6 @@ ml_env/
 env/
 venv/
 .ml_env/
-ml_env/
 .env/
 .ml_win/
 ml_win/
@@ -54,7 +54,7 @@ model_checkpoints/
 SAVE_DIR/
 ten_percent_checkpoint_weights/
 
-# Logs e Hist�rico de Treino
+# Logs e Histórico de Treino
 runs/
 training_logs/
 transfer_learning/
@@ -72,5 +72,3 @@ checkpoint
 *.data-00000-of-*
 *.data-*
 *.index
-
-
