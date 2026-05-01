@@ -1,0 +1,9 @@
+Requirement already satisfied: flatbuffers in c:\project_1\ml_env\lib\site-packages (2.0.7)
+Collecting flatbuffers
+  Using cached flatbuffers-25.9.23-py2.py3-none-any.whl (30 kB)
+Installing collected packages: flatbuffers
+  Attempting uninstall: flatbuffers
+    Found existing installation: flatbuffers 2.0.7
+    Uninstalling flatbuffers-2.0.7:
+      Successfully uninstalled flatbuffers-2.0.7
+Successfully installed flatbuffers-25.9.23
