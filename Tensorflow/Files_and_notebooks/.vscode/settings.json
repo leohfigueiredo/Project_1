@@ -1,0 +1,8 @@
+{
+    "python.defaultInterpreterPath": "/home/leonardo/ml_env_310/bin/python",
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "jupyter.askForKernelRestart": false,
+    "python.analysis.extraPaths": [
+        "/home/leonardo/ml_env_310/lib/python3.10/site-packages"
+    ]
+}

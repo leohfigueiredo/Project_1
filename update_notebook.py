@@ -1,6 +1,7 @@
 import json
 
-notebook_path = r'c:\Project_1\Tensorflow\Files_and_notebooks\08_introduction_to_nlp_in_tensorflow\08_introduction_to_nlp_in_tensorflow.ipynb'
+# Caminho ajustado para o ambiente Linux/WSL (compatível com ROCm)
+notebook_path = '/home/leonardo/Project_1/Tensorflow/Files_and_notebooks/08_introduction_to_nlp_in_tensorflow/08_introduction_to_nlp_in_tensorflow.ipynb'
 
 with open(notebook_path, 'r', encoding='utf-8') as f:
     nb = json.load(f)
@@ -29,7 +30,25 @@ code_to_add = [
 
 nb['cells'][target_idx]['source'].extend(code_to_add)
 
+# --- Adicionando configuração ROCm no início do notebook ---
+rocm_cell = {
+    "cell_type": "code",
+    "execution_count": None,
+    "metadata": {},
+    "outputs": [],
+    "source": [
+        "# === INICIALIZAÇÃO ROCm (GPU AMD) ===\n",
+        "import sys\n",
+        "sys.path.append('../../')  # Aponta para a pasta Tensorflow onde está o tf_startup.py\n",
+        "import tf_startup\n"
+    ]
+}
+
+# Insere no topo apenas se já não tiver sido adicionado antes
+if nb['cells'] and "tf_startup" not in "".join(nb['cells'][0].get('source', [])):
+    nb['cells'].insert(0, rocm_cell)
+
 with open(notebook_path, 'w', encoding='utf-8') as f:
     json.dump(nb, f, indent=1, ensure_ascii=False)
 
-print(f"Updated cell at index {target_idx} successfully.")
+print(f"Updated cell at index {target_idx} successfully and added ROCm startup!")

@@ -14,8 +14,8 @@ print()
 print("2. PyTorch:")
 import torch
 print(f"   Versão: {torch.__version__}")
-print(f"   CUDA disponível: {torch.cuda.is_available()}")
-print(f"   Backend: {'CPU (normal para Windows AMD)' if not torch.cuda.is_available() else 'GPU'}")
+print(f"   ROCm/CUDA disponível: {torch.cuda.is_available()}")
+print(f"   Backend: {'CPU' if not torch.cuda.is_available() else 'GPU (ROCm)'}")
 
 print()
 
@@ -46,5 +46,5 @@ print(f"   NumPy array shape: {x_np.shape}")
 
 print()
 print("✅ Ambiente configurado e funcionando!")
-print("   Para estudos de ML/Deep Learning, use TensorFlow 2.13.0")
-print("   Para redes neurais com PyTorch, use a versão CPU instalada")
+print("   Verifique acima se as GPUs foram detectadas e estão retornando 'True'.")
+print("   Lembre-se: ROCm tem suporte nativo no Linux (ou WSL2 para Windows).")

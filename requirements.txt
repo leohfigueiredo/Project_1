@@ -7,19 +7,19 @@ numpy==1.26.4                    # Com otimizações MKL/OpenBLAS
 scipy==1.13.0                    # Atualizado para Python 3.11
 openblas==0.3.26                 # BLAS otimizado para AMD
 
-# === TENSORFLOW 2.15 COM ONE-DNN (ESSENCIAL PARA AMD) ===
-tensorflow-intel==2.15.0         # ⬅️ COM oneDNN/MKL ativado
+# === TENSORFLOW ROCm (GPU AMD) ===
+tensorflow-rocm                  # ⬅️ Deixando o pip decidir a melhor versão para Python 3.12
 tensorflow-hub==0.15.0
 tensorboard==2.15.2
 tensorflow-datasets==4.9.4       # Para datasets grandes
-keras==2.15.0                    # Compatível com TF 2.15
+keras==2.17.0                    # Sincronizado com TF 2.17
 protobuf==4.25.3                 # Versão específica compatível
 
-# === PYTORCH 2.2 COM OTIMIZAÇÕES CPU ===
+# === PYTORCH 2.2 COM ROCm 5.7 (GPU AMD) ===
 torch==2.2.1
 torchvision==0.17.1
 torchaudio==2.2.1
---index-url https://download.pytorch.org/whl/cpu
+--index-url https://download.pytorch.org/whl/rocm5.7
 
 # === JUPYTER / VSCODE (96GB PERF) ===
 jupyter==1.0.0

@@ -1,7 +1,7 @@
 """
 ═══════════════════════════════════════════════════════════════════════
-TensorFlow Startup Configuration - AMD Ryzen 7 4800U
-Performance: ~2x mais rápido (5.3s → 2.67s)
+TensorFlow Startup Configuration - AMD ROCm (GPU)
+Otimizado para aceleração via Placas de Vídeo AMD (ROCm)
 ═══════════════════════════════════════════════════════════════════════
 
 USO:
@@ -29,25 +29,45 @@ import warnings
 warnings.filterwarnings('ignore')
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-# oneDNN - Aceleração para CPUs AMD/Intel
-os.environ['TF_ENABLE_ONEDNN_OPTS'] = '1'
+# === HACK PARA GEEKOM A9 MAX (Radeon 780M - iGPU) ===
+# Força o ROCm a aceitar a arquitetura da iGPU do seu Ryzen 9
+os.environ['HSA_OVERRIDE_GFX_VERSION'] = '11.0.0'
 
-# Threads otimizados para Ryzen 7 4800U (8 cores / 16 threads)
-os.environ['OMP_NUM_THREADS'] = '16'
-os.environ['TF_NUM_INTRAOP_THREADS'] = '16'
-os.environ['TF_NUM_INTEROP_THREADS'] = '2'
-os.environ['KMP_BLOCKTIME'] = '0'
-os.environ['KMP_AFFINITY'] = 'granularity=fine,compact,1,0'
+# Ajuda o sistema a encontrar as bibliotecas do ROCm caso estejam na pasta padrão
+os.environ['LD_LIBRARY_PATH'] = f"/opt/rocm/lib:{os.environ.get('LD_LIBRARY_PATH', '')}"
+# Configurações críticas de PATH para evitar o erro "undefined symbol"
+ROCM_PATH = "/opt/rocm/lib"
+if ROCM_PATH not in os.environ.get('LD_LIBRARY_PATH', ''):
+    os.environ['LD_LIBRARY_PATH'] = f"{ROCM_PATH}:{os.environ.get('LD_LIBRARY_PATH', '')}"
 
-# Otimizações adicionais
-os.environ['MKL_NUM_THREADS'] = '16'
+# Garante que kernels dinâmicos do TF encontrem as libs do ROCm 6.2
+os.environ['TF_ROCM_AMDGPU_TARGETS'] = 'gfx1103'
 
 # ═════════════════════════════════════════════════════════════════════
 # IMPORTAR TENSORFLOW
 # ═════════════════════════════════════════════════════════════════════
 
-import tensorflow as tf
-from tensorflow.keras import mixed_precision
+import sys
+
+# Bloqueia a carga de versões conflitantes do protobuf/abseil se necessário
+os.environ['PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION'] = 'python'
+
+try:
+    import tensorflow as tf
+    from tensorflow.keras import mixed_precision
+except ImportError as e:
+    raise ImportError("❌ ERRO CRÍTICO: TensorFlow não encontrado! Verifique se você selecionou o kernel correto (ex: ml_env_311) no canto superior direito do VS Code.") from e
+
+# Configurar alocação dinâmica de memória na GPU (Memory Growth)
+gpus = tf.config.list_physical_devices('GPU')
+if gpus:
+    try:
+        for gpu in gpus:
+            tf.config.experimental.set_memory_growth(gpu, True)
+    except RuntimeError as e:
+        print(e)
+else:
+    print("⚠️ AVISO: Nenhuma GPU (ROCm) detectada pelo TensorFlow. O treino será feito na CPU.")
 
 # Mixed precision (float16) - ~30% mais rápido
 mixed_precision.set_global_policy('mixed_float16')
@@ -58,7 +78,7 @@ mixed_precision.set_global_policy('mixed_float16')
 
 def create_fast_model(input_shape, num_classes, hidden_units=[512, 256]):
     """
-    Cria modelo otimizado para CPU (sem BatchNormalization)
+    Cria modelo otimizado para GPU AMD (ROCm)
     
     Args:
         input_shape: tuple - Shape da entrada, ex: (784,)
@@ -91,7 +111,7 @@ def create_fast_model(input_shape, num_classes, hidden_units=[512, 256]):
 
 def get_fast_optimizer(learning_rate=0.01):
     """
-    Retorna SGD (mais rápido que Adam em CPU)
+    Retorna Adam (Excelente performance em GPU)
     
     Args:
         learning_rate: float - Taxa de aprendizado (padrão: 0.01)
@@ -102,10 +122,8 @@ def get_fast_optimizer(learning_rate=0.01):
     Exemplo:
         optimizer = get_fast_optimizer(0.01)
     """
-    return tf.keras.optimizers.SGD(
-        learning_rate=learning_rate,
-        momentum=0.9,
-        nesterov=True
+    return tf.keras.optimizers.Adam(
+        learning_rate=learning_rate
     )
 
 
@@ -136,7 +154,7 @@ def optimize_dataset(X, y, batch_size=256, shuffle=True, cache=True):
     Args:
         X: numpy array - Features
         y: numpy array - Labels
-        batch_size: int - Tamanho do batch (256 é ideal para Ryzen 4800U)
+        batch_size: int - Tamanho do batch (Depende da VRAM da sua GPU, ex: 256-1024)
         shuffle: bool - Embaralhar dados
         cache: bool - Cachear em memória
     
@@ -166,12 +184,12 @@ def optimize_dataset(X, y, batch_size=256, shuffle=True, cache=True):
 # ═════════════════════════════════════════════════════════════════════
 
 print("═" * 70)
-print("✅ TensorFlow Otimizado - AMD Ryzen 7 4800U")
+print("✅ TensorFlow Otimizado - GPU AMD (ROCm)")
 print("═" * 70)
-print(f"  🚀 Performance: ~2x mais rápido")
-print(f"  💻 Threads: 16 (8 cores / 16 threads)")
+print(f"  🚀 Performance: Aceleração via GPU Ativada")
+print(f"  💻 GPUs Detectadas: {len(gpus)}")
 print(f"  ⚡ Mixed Precision: float16")
-print(f"  🔧 oneDNN: Habilitado")
+print(f"  🔧 Memory Growth: Habilitado")
 print(f"  📦 TensorFlow: {tf.__version__}")
 print("═" * 70)
 print("\n📝 FUNÇÕES DISPONÍVEIS:")
