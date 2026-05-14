@@ -111,3 +111,8 @@ logs/
 *.data-00000-of-*
 *.data-*
 *.index
+
+# Pastas do dataset PubMed
+pubmed-rct/
+*/pubmed-rct/
+**/pubmed-rct/**
