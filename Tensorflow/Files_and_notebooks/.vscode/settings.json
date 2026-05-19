@@ -1,8 +1,8 @@
 {
-    "python.defaultInterpreterPath": "/home/leonardo/ml_env_310/bin/python",
+    "python.defaultInterpreterPath": "/home/leonardo/Project_1/Tensorflow/Files_and_notebooks/.venv/bin/python",
     "python.terminal.activateEnvInCurrentTerminal": true,
     "jupyter.askForKernelRestart": false,
     "python.analysis.extraPaths": [
-        "/home/leonardo/ml_env_310/lib/python3.10/site-packages"
+        "/home/leonardo/Project_1/Tensorflow/Files_and_notebooks/.venv/lib/python3.11/site-packages"
     ]
 }
