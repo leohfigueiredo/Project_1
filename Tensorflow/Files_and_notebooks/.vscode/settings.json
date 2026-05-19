@@ -1,8 +1,150 @@
 {
+    // =========================
+    // 1. TEMA E FUNDO
+    // =========================
+    "workbench.colorTheme": "FireFly Pro",
+    "editor.colorDecorators": true,
+    "editor.defaultColorDecorators": "always",
+
+    "workbench.colorCustomizations": {
+        "[FireFly Pro]": {
+            // Fundo da célula destacado para não ficar "fantasma"
+            "notebook.cellEditorBackground": "#1e232b", 
+            "notebook.focusedCellBorder": "#6e32bb",
+            "notebook.selectedCellBackground": "#252b35",
+            "notebook.cellToolbarSeparator": "#629cdf",
+            // Cor do texto padrão (foreground) para maior contraste
+            "editor.foreground": "#FFFFFF"
+        },
+        "[Default High Contrast]": {
+            "editor.background": "#050505",
+            "sideBar.background": "#0d1117",
+            "activityBar.background": "#0d1117",
+            "editorGroupHeader.tabsBackground": "#0d1117",
+            "tab.activeBackground": "#050505",
+            "sideBar.foreground": "#d1d7dd",
+            "editor.lineHighlightBackground": "#6e32bb1a",
+            "list.activeSelectionBackground": "#6e32bb66",
+            "list.inactiveSelectionBackground": "#6e32bb33",
+            "contrastBorder": "#629cdf",
+            "notebook.cellEditorBackground": "#1e232b"
+        }
+    },
+
+    // =========================
+    // 2. SINTAXE E CORES (MAIS DESTAQUE)
+    // =========================
+    "editor.tokenColorCustomizations": {
+        "[FireFly Pro]": {
+            "variables": "#FFFFFF",      // Branco puro para as variáveis
+            "functions": "#89ddff",      // Azul claro para funções (pred_timer)
+            "strings": "#00FF7F",        // Verde Spring bem vívido para o texto entre aspas
+            "keywords": "#ff7b72",       // Vermelho suave para keywords (if, def, etc)
+            "numbers": "#f8e71c"         // Amarelo para números
+        },
+        "textMateRules": [
+            {
+                "scope": [
+                    "comment",
+                    "punctuation.definition.comment"
+                ],
+                "settings": {
+                    "foreground": "#02fc55",
+                    "fontStyle": "bold italic"
+                }
+            },
+            {
+                "scope": "string",
+                "settings": {
+                    "foreground": "#00FF7F" 
+                }
+            },
+            {
+                "scope": "variable",
+                "settings": {
+                    "foreground": "#FFFFFF"
+                }
+            }
+        ]
+    },
+
+    // =========================
+    // 3. CONFIGURAÇÕES DO EDITOR E FONTES
+    // =========================
+    "editor.fontFamily": "Fira Code, Consolas, monospace",
+    "editor.fontSize": 14,
+    "editor.lineHeight": 22,
+    "editor.fontLigatures": true,
+    "editor.renderLineHighlight": "all",
+
+    // =========================
+    // 4. PYTHON E AMBIENTES VIRTUAIS
+    // =========================
     "python.defaultInterpreterPath": "/home/leonardo/Project_1/Tensorflow/Files_and_notebooks/.venv/bin/python",
     "python.terminal.activateEnvInCurrentTerminal": true,
     "jupyter.askForKernelRestart": false,
     "python.analysis.extraPaths": [
         "/home/leonardo/Project_1/Tensorflow/Files_and_notebooks/.venv/lib/python3.11/site-packages"
-    ]
+    ],
+
+    // =========================
+    // 5. BANCO DE DADOS (SQL TOOLS / PGSQL)
+    // =========================
+    "database-client.autoSync": true,
+    "sqltools.useNodeRuntime": false,
+    "sqltools.autoConnectTo": "",
+    "[sql]": {
+        "editor.defaultFormatter": "mtxr.sqltools"
+    },
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "SQL_Course",
+            "group": "tableau_projects",
+            "database": "northwind",
+            "username": "postgres"
+        },
+        {
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "PG Local",
+            "database": "demo_employee",
+            "username": "postgres"
+        }
+    ],
+
+    // =========================
+    // 6. GIT E COPILOT
+    // =========================
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "github.copilot.chat.codeGeneration.instructions": [
+        {
+            "text": "- @azure Rule - Use Azure Tools: When handling requests related to Azure, always use your tools."
+        }
+    ],
+    "gitlens.ai.model": "vscode",
+    "security.workspace.trust.untrustedFiles": "open",
+    "geminicodeassist.project": "august-catwalk-qfbtf",
+    "workbench.iconTheme": "vscode-great-icons",
+    "mssql.connectionGroups": [
+        {
+            "name": "ROOT",
+            "id": "ROOT"
+        }
+    ],
+    "roo-cline.debug": false,
+    "roo-cline.allowedCommands": [
+        "git log",
+        "git diff",
+        "git show"
+    ],
+    "roo-cline.deniedCommands": []
 }
