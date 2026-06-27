@@ -1,0 +1,10 @@
+name: Local AI
+
+models:
+  - name: Qwen3
+    provider: ollama
+    model: qwen3:14b
+
+tabAutocompleteModel:
+  provider: ollama
+  model: qwen2.5-coder:14b

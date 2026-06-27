@@ -73,3 +73,4 @@ checkpoint
 *.data-00000-of-*
 *.data-*
 *.index
+.aider*

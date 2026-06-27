@@ -41,7 +41,8 @@ if ROCM_PATH not in os.environ.get('LD_LIBRARY_PATH', ''):
     os.environ['LD_LIBRARY_PATH'] = f"{ROCM_PATH}:{os.environ.get('LD_LIBRARY_PATH', '')}"
 
 # Garante que kernels dinâmicos do TF encontrem as libs do ROCm 6.2
-os.environ['TF_ROCM_AMDGPU_TARGETS'] = 'gfx1103'
+# O alvo abaixo foi ajustado para o valor reportado pela sua GPU AMD (gfx1030).
+os.environ['TF_ROCM_AMDGPU_TARGETS'] = 'gfx1030'
 
 # ═════════════════════════════════════════════════════════════════════
 # IMPORTAR TENSORFLOW
@@ -69,8 +70,15 @@ if gpus:
 else:
     print("⚠️ AVISO: Nenhuma GPU (ROCm) detectada pelo TensorFlow. O treino será feito na CPU.")
 
-# Mixed precision (float16) - ~30% mais rápido
-mixed_precision.set_global_policy('mixed_float16')
+# Mixed precision (float16) - útil somente se houver GPU compatível.
+# Em iGPU AMD, muitas vezes é mais seguro deixar em float32 para evitar problemas.
+if gpus:
+    try:
+        mixed_precision.set_global_policy('mixed_float16')
+    except Exception:
+        mixed_precision.set_global_policy('float32')
+else:
+    mixed_precision.set_global_policy('float32')
 
 # ═════════════════════════════════════════════════════════════════════
 # FUNÇÕES HELPER OTIMIZADAS
